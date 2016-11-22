@@ -23,7 +23,7 @@ Between 2009 and 2014, I started several projects which are now integrated into 
 Image above : combined architecture of past projects in the form of a simplified entity diagram, also representing Drupal-related entities.
 
 The second project ("task-oriented") also included a minimal, naïve attempt at modeling suggestions : see picture below, detailing a central part of its data model.
-[![Task-oriented (legacy project) : minimal, naïve attempt at modeling suggestions](readme\index\task-oriented-detail-v02.png)](readme\index\task-oriented-detail-v02.png)
+[![Minimal, naïve attempt at modeling suggestions, from Task-oriented legacy project](readme\index\task-oriented-detail-v02.png)](readme\index\task-oriented-detail-v02.png)
 
 Existing contributed Drupal modules already offer implementation suggestions, for example :
 - https://www.drupal.org/project/mltag
