@@ -9,15 +9,15 @@ This project gathers old ideas about an open-source web application for taking n
 * Research journal on very diverse subjects (personal archive)
 * Private, public, multi-user with optional open access for collaboration, inspiration, discourse
 * Organizing notes (relations, knowledge management, "archeology of knowledge", reflexivity) - including experimenting with automation (e.g. producing suggestions or generating relations) and mixing different indexes
-* Data import/export - including periodically and automatically,  and visualization
-* Efficient interface design aiming for accessibility, progressive enhancement, and offline capabilities (+ installable app ?)
+* Data import/export (including periodically) and visualization
+* Efficient interface [design](https://principles.adactio.com/) aiming for accessibility, progressive enhancement, and offline capabilities (+ installable app ?)
 
 
 ## General presentation
 
 ### Conception
 
-Between 2009 and 2014, I started several projects which are now integrated into a single one ("projet complexe"). One started out of curiosity for History and interactive visualization of historical events, another focused on the findability of "memo" notes about practical knowledge (consisting in a collection and archive of instructions, guides and tutorials), and the last one was centered around the organization of notes, concepts and knowledge (their origins and development).
+Between 2009 and 2014, I started several projects which are now integrated into a single one ("projet complexe"). One started out of curiosity for History and interactive visualization of historical events, another focused on the findability of "memos" about practical knowledge (consisting in a collection and archive of instructions, guides and tutorials), and the last one was centered around the organization of concepts and ideas (their origins, development and interactions).
 
 [![Combined architecture of past projects in the form of a simplified entity diagram, also representing Drupal-related entities.](readme/index/projet-complexe-diagrams-v01.png)](readme/index/projet-complexe-diagrams-v01.png)
 Image above : combined architecture of past projects in the form of a simplified entity diagram, also representing Drupal-related entities.
@@ -25,7 +25,7 @@ Image above : combined architecture of past projects in the form of a simplified
 The second project ("task-oriented") also included a minimal, naïve attempt at modeling suggestions : see picture below, detailing a central part of its data model.
 [![Minimal, naïve attempt at modeling suggestions, from Task-oriented legacy project](readme/index/task-oriented-detail-v02.png)](readme/index/task-oriented-detail-v02.png)
 
-Existing contributed Drupal modules already offer implementation suggestions, for example :
+Existing contributed Drupal modules already offer implementation examples or alternatives :
 - https://www.drupal.org/project/mltag
 - https://www.drupal.org/project/recommender
 - (see also https://www.drupal.org/project/machine_learning)
@@ -39,7 +39,7 @@ Starting the project as described here for now is only a first step: I'm hoping 
 
 The idea of merging different legacy projects - some of which having very different use cases - into a single one poses challenges for deciding how to approach the design of the interface. For now, I'm considering a conceptual categorization of the diverse contents available based on my own two main intentions to use this application : achieving tasks (getting things done), and learning (improving and extending knowledge).
 
-How this duality translates into interface design choices is not very clear yet (i.e. selectable modes re-arranging the layout and/or functions available), but here's a list of terms illustrating this concept of "duality of use" :
+How this duality translates into interface design choices is not very clear yet (i.e. selectable modes re-arranging the layout and/or functions available), but here's a list of terms illustrating this concept of "duality of use" when using the app to search :
 
 Knowledge-oriented | Task-oriented
 --- | ---
@@ -54,11 +54,14 @@ Theory | Practice
 Information | Command
 Thought | Action
 
+In any context, I'm hoping to experiment with visualization ideas specific to current intent ("orientation").
+
+Another important use of the interface will be inputting content, or importing it. Technical decisions will impact this for economical reasons: see below.
 
 ### [WIP] Technical considerations
 
 * Backend experiments: traditional natural language search indexes (Solr, ElasticSearch), graph databases (OrientDB), IEML ?
-* Frontend experiments: headless Drupal (Elm ? React ?), or [something in between](http://buytaert.net/how-should-you-decouple-drupal) ?
+* [Frontend](https://github.com/Paulmicha/css-organization) experiments: headless Drupal (Elm ? pReact ? Webcomponents ?), or [something in between](http://buytaert.net/how-should-you-decouple-drupal) ?
 
 
 ## Usage instructions / getting started
