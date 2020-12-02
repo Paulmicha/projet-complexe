@@ -1,6 +1,5 @@
 # Projet complexe
 
-
 ## TL;DR
 
 *"All [curation](https://twitter.com/plevy/status/716299155904311297) grows until it requires search. All search grows until it requires curation"* – [B. Evans](http://ben-evans.com/benedictevans/2016/1/31/lists-are-the-new-search)
@@ -12,7 +11,6 @@ This project gathers old ideas about an open-source web application for taking n
 * Data import/export (including periodically) and visualization
 * Efficient interface [design](https://principles.adactio.com/) aiming for accessibility, progressive enhancement, and offline capabilities (+ installable app ?)
 
-
 ## General presentation
 
 ### Conception
@@ -21,19 +19,6 @@ Between 2009 and 2014, I started several projects which are now integrated into 
 
 [![Combined architecture of past projects in the form of a simplified entity diagram, also representing Drupal-related entities.](readme/index/projet-complexe-diagrams-v01.png)](readme/index/projet-complexe-diagrams-v01.png)
 Image above : combined architecture of past projects in the form of a simplified entity diagram, also representing Drupal-related entities.
-
-The second project ("task-oriented") also included a minimal, naïve attempt at modeling suggestions : see picture below, detailing a central part of its data model.
-[![Minimal, naïve attempt at modeling suggestions, from Task-oriented legacy project](readme/index/task-oriented-detail-v02.png)](readme/index/task-oriented-detail-v02.png)
-
-Existing contributed Drupal modules already offer implementation examples or alternatives :
-- https://www.drupal.org/project/mltag
-- https://www.drupal.org/project/recommender
-- (see also https://www.drupal.org/project/machine_learning)
-
-However, the process of manually entering all the necessary entries and/or their inter-connections might prove too cumbersome, even though [importing](https://www.drupal.org/node/2127611) (mostly [structured](https://www.drupal.org/project/migrate_plus)) data is possible.
-
-Starting the project as described here for now is only a first step: I'm hoping to evaluate how [IEML](https://pierrelevyblog.com/2016/06/13/ieml-in-plain-english/) could open new possibilities for automating (even partially) and/or assisting the organizational aspect of content management.
-
 
 ### Design
 
@@ -56,35 +41,7 @@ Thought | Action
 
 In any context, I'm hoping to experiment with visualization ideas specific to current intent ("orientation").
 
-Another important use of the interface will be inputting content, or importing it. Technical decisions will impact this for economical reasons: see below.
-
-### [WIP] Technical considerations
-
-* Backend experiments: traditional natural language search indexes (Solr, ElasticSearch), graph databases (OrientDB), IEML ?
-* [Frontend](https://github.com/Paulmicha/css-organization) experiments: headless Drupal (Elm ? pReact ? Webcomponents ?), or [something in between](http://buytaert.net/how-should-you-decouple-drupal) ?
-
-
-## Usage instructions / getting started
-
-### Prerequisites
-
-See https://github.com/Wodby/docker4drupal
-
-### Project setup
-
-- Clone this repo and `cd` into project dir
-- (as root, if applicable) Avoid files & folders ownership issues with `chown 82:82 . -R`
-- Launch services : `docker-compose up -d`
-- Install Drupal 8 dependencies : `docker-compose exec --user 82 php composer install`
-- [todo] build entity model + optionally generate samples (for quick demo)
-
-
-## Current status
-
-I'm hoping to get a working prototype in 2017.
-
-
 ## License
 
-Source code is [GPLv2](LICENSE).  
+Source code is [GPLv2](LICENSE).
 All content is [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/), unless otherwise stated.
