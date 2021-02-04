@@ -238,7 +238,7 @@ display:
           row_class: ''
           default_row_class: true
           uses_fields: false
-      title: ''
+      title: 'Notes on Strategy and Design for the Anthropocene'
       header: {  }
       footer: {  }
       relationships: {  }

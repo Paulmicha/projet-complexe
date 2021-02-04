@@ -1,0 +1,19 @@
+uuid: 3195b4f9-b920-4e03-bf3e-fad138f848c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.work_group
+    - node.type.concept
+  module:
+    - gnode
+    - node
+id: work_group-group_node-concept
+label: 'Work group: Group node (Concept)'
+description: 'Adds <em class="placeholder">Concept</em> content to groups both publicly and privately.'
+group_type: work_group
+content_plugin: 'group_node:concept'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

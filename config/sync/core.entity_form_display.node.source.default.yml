@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.source.body
     - node.type.source
   module:
+    - hide_revision_field
     - path
     - text
 id: node.source.default
@@ -41,6 +42,18 @@ content:
       display_label: true
     weight: 15
     region: content
+    third_party_settings: {  }
+  revision_log:
+    type: hide_revision_field_log_widget
+    weight: 80
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+      permission_based: true
+      default: ''
+      show: false
+      allow_user_settings: false
     third_party_settings: {  }
   status:
     type: boolean_checkbox

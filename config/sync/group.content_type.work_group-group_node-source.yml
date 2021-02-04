@@ -1,0 +1,19 @@
+uuid: cbc357eb-8de7-4abc-a377-dae2b7ce6944
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.work_group
+    - node.type.source
+  module:
+    - gnode
+    - node
+id: work_group-group_node-source
+label: 'Work group: Group node (Source)'
+description: 'Adds <em class="placeholder">Source</em> content to groups both publicly and privately.'
+group_type: work_group
+content_plugin: 'group_node:source'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

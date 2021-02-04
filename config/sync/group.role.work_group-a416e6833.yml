@@ -1,0 +1,17 @@
+uuid: 45ef17e8-0172-41f5-9417-c1672c42b094
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.work_group
+  enforced:
+    config:
+      - user.role.administrator
+id: work_group-a416e6833
+label: Administrator
+weight: 2
+internal: true
+audience: outsider
+group_type: work_group
+permissions_ui: false
+permissions: {  }

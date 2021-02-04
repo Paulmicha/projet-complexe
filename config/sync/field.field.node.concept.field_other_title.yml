@@ -1,0 +1,19 @@
+uuid: fa8b70c9-e5e4-4aec-a893-48b703b68472
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_other_title
+    - node.type.concept
+id: node.concept.field_other_title
+field_name: field_other_title
+entity_type: node
+bundle: concept
+label: 'Other titles'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

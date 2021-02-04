@@ -1,0 +1,19 @@
+uuid: 05d224ac-5eb8-45f1-bf32-c50558702264
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.work_group
+    - node.type.note
+  module:
+    - gnode
+    - node
+id: work_group-group_node-note
+label: 'Work group: Group node (Note)'
+description: 'Adds <em class="placeholder">Note</em> content to groups both publicly and privately.'
+group_type: work_group
+content_plugin: 'group_node:note'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

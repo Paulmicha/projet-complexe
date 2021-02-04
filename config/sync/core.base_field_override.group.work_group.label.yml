@@ -1,0 +1,18 @@
+uuid: cb932c71-c3e0-4175-9cdc-a720d9e292aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.work_group
+id: group.work_group.label
+field_name: label
+entity_type: group
+bundle: work_group
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

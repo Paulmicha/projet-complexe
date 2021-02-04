@@ -1,0 +1,26 @@
+uuid: 8ed40ba4-9679-4313-a2dd-07d4fe0ad439
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.work_group
+id: work_group-member
+label: Member
+weight: -100
+internal: true
+audience: member
+group_type: work_group
+permissions_ui: true
+permissions:
+  - 'access group_node overview'
+  - 'administer members'
+  - 'create group_node:article entity'
+  - 'delete own group_node:article content'
+  - 'delete own group_node:article entity'
+  - 'leave group'
+  - 'update own group_membership content'
+  - 'update own group_node:article content'
+  - 'update own group_node:article entity'
+  - 'view group'
+  - 'view group_membership content'
+  - 'view group_node:article entity'

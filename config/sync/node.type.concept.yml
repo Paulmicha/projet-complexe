@@ -1,0 +1,17 @@
+uuid: cc0a1c6b-9a14-4220-bb9e-a48db34b19ef
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Concept
+type: concept
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

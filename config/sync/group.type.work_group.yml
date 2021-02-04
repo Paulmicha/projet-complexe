@@ -1,0 +1,10 @@
+uuid: 51c19b23-2d3e-4a0c-86b4-69104eaf8e3e
+langcode: en
+status: true
+dependencies: {  }
+id: work_group
+label: 'Work group'
+description: ''
+creator_membership: true
+creator_wizard: true
+creator_roles: {  }

@@ -1,0 +1,37 @@
+uuid: 73e70478-d4ba-4ca1-9ef8-057253547762
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.concept.body
+    - field.field.node.concept.field_other_title
+    - node.type.concept
+  module:
+    - text
+    - user
+id: node.concept.default
+targetEntityType: node
+bundle: concept
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_other_title:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }
