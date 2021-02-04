@@ -1,0 +1,14 @@
+uuid: c59f97c9-a87a-4061-828d-d8981a64f482
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.researcher
+  module:
+    - user
+id: user_remove_role_action.researcher
+label: 'Remove the Researcher role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: researcher
