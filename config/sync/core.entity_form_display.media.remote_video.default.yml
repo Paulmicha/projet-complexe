@@ -6,6 +6,7 @@ dependencies:
     - field.field.media.remote_video.field_media_oembed_video
     - media.type.remote_video
   module:
+    - hide_revision_field
     - media
     - path
 _core:
@@ -29,11 +30,30 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   path:
     type: path
     weight: 30
     region: content
     settings: {  }
+    third_party_settings: {  }
+  revision_log_message:
+    type: hide_revision_field_log_widget
+    weight: 80
+    region: content
+    settings:
+      show: true
+      default: ''
+      permission_based: false
+      allow_user_settings: true
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   status:
     type: boolean_checkbox

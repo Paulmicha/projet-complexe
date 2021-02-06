@@ -32,6 +32,7 @@
         "drupal/search_api": "^1.19",
         "drupal/search_api_attachments": "^1.0@beta",
         "drupal/search_api_solr": "^4.1",
+        "drupal/swiftmailer": "^2.0",
         "drush/drush": "^10.3"
     },
     "conflict": {

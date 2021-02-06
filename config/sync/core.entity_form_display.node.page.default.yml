@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.page.body
     - node.type.page
   module:
+    - hide_revision_field
     - path
     - text
 _core:
@@ -31,6 +32,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   path:
     type: path
     weight: 30
@@ -43,6 +51,18 @@ content:
       display_label: true
     weight: 15
     region: content
+    third_party_settings: {  }
+  revision_log:
+    type: hide_revision_field_log_widget
+    weight: 80
+    region: content
+    settings:
+      show: true
+      default: ''
+      permission_based: false
+      allow_user_settings: true
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   status:
     type: boolean_checkbox

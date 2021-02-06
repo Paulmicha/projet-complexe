@@ -7,6 +7,7 @@ dependencies:
     - image.style.thumbnail
     - media.type.image
   module:
+    - hide_revision_field
     - image
     - path
 _core:
@@ -30,11 +31,30 @@ content:
     type: image_image
     weight: 0
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   path:
     type: path
     weight: 30
     region: content
     settings: {  }
+    third_party_settings: {  }
+  revision_log_message:
+    type: hide_revision_field_log_widget
+    weight: 80
+    region: content
+    settings:
+      show: true
+      default: ''
+      permission_based: false
+      allow_user_settings: true
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   status:
     type: boolean_checkbox
