@@ -24,7 +24,7 @@ content:
     third_party_settings: {  }
   field_media_document:
     settings:
-      progress_indicator: throbber
+      progress_indicator: bar
     third_party_settings: {  }
     type: file_generic
     weight: 0
