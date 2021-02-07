@@ -1,0 +1,19 @@
+uuid: 4cfc5486-8a0b-41b5-8f24-f788cbb47124
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_family_name
+    - node.type.person
+id: node.person.field_family_name
+field_name: field_family_name
+entity_type: node
+bundle: person
+label: 'Family name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

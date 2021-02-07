@@ -1,17 +1,17 @@
-uuid: fc12a6e0-247e-4e41-bdae-8f0e77d365f5
+uuid: f9951954-fd62-4f43-8de0-4264e4f7df2e
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.source.field_authors
-    - field.field.node.source.field_document
-    - node.type.source
+    - field.field.node.person.field_family_name
+    - field.field.node.person.field_first_names
+    - node.type.person
   module:
     - user
-id: node.source.teaser
+id: node.person.teaser
 targetEntityType: node
-bundle: source
+bundle: person
 mode: teaser
 content:
   links:
@@ -20,7 +20,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_authors: true
-  field_document: true
+  field_family_name: true
+  field_first_names: true
   langcode: true
   search_api_excerpt: true

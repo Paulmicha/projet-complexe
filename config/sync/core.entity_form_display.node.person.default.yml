@@ -1,0 +1,59 @@
+uuid: 4796870d-c368-4443-9457-051984583dbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.person.field_family_name
+    - field.field.node.person.field_first_names
+    - node.type.person
+  module:
+    - path
+id: node.person.default
+targetEntityType: node
+bundle: person
+mode: default
+content:
+  field_family_name:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_first_names:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: 'Full name'
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  promote: true
+  revision_log: true
+  sticky: true
+  uid: true

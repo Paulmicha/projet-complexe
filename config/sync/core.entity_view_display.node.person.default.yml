@@ -1,34 +1,33 @@
-uuid: 5baf663f-0a39-41ff-983e-19047286a660
+uuid: f78ff1cf-907a-4f27-bf7d-b8c7bdd4d87c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.source.field_authors
-    - field.field.node.source.field_document
-    - node.type.source
+    - field.field.node.person.field_family_name
+    - field.field.node.person.field_first_names
+    - node.type.person
   module:
     - user
-id: node.source.default
+id: node.person.default
 targetEntityType: node
-bundle: source
+bundle: person
 mode: default
 content:
-  field_authors:
+  field_family_name:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_first_names:
     weight: 102
     label: above
     settings:
-      link: true
+      link_to_entity: false
     third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_document:
-    type: entity_reference_entity_view
-    weight: 101
-    label: above
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
+    type: string
     region: content
   links:
     weight: 100
