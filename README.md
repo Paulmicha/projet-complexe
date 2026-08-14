@@ -78,7 +78,7 @@ This project gathered old ideas about an open-source web application for taking 
 
 Between 2009 and 2014, I started several projects which are now integrated into a single one ("projet complexe"). One started out of curiosity for History and interactive visualization of historical events, another focused on the findability of "memos" about practical knowledge (consisting in a collection and archive of instructions, guides and tutorials), and the last one was centered around the organization of concepts and ideas (their origins, development and interactions).
 
-[![Combined architecture of past projects in the form of a simplified entity diagram, also representing Drupal-related entities.](readme/index/projet-complexe-diagrams-v01.png)](readme/index/projet-complexe-diagrams-v01.png)
+[![Combined architecture of past projects in the form of a simplified entity diagram, also representing Drupal-related entities.](docs/assets/projet-complexe-diagrams-v01.png)](docs/assets/projet-complexe-diagrams-v01.png)
 Image above : combined architecture of past projects in the form of a simplified entity diagram, also representing Drupal-related entities.
 
 ### Design

@@ -1,23 +1,2 @@
-# Ignore dependencies that are managed with Composer.
-/vendor
-/web/core
-/web/themes/contrib
-/web/modules/contrib
-
-# Ignore configuration files that may contain sensitive information.
-/web/sites/*/settings*.php
-/web/sites/*/services*.yml
-
-# Except the default Drupal settings file, containing common settings to be
-# overriden in settings.local.php.
-!/web/sites/default/settings.php
-
-# Ignore paths that contain user-generated content.
-/web/sites/*/files
-/web/sites/*/private
-
-# Ignore SimpleTest multi-site environment.
-/web/sites/simpletest
-
 # CTags.
 /tags
