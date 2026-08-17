@@ -1,4 +1,5 @@
 import { createSignal } from "solid-js";
+import { Button } from "@opencenter-cloud/kobalte-core/button";
 import logo from "./assets/logo.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
@@ -6,6 +7,7 @@ import "./App.css";
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
   const [name, setName] = createSignal("");
+  const [clicks, setClicks] = createSignal(0);
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -44,6 +46,20 @@ function App() {
         <button type="submit">Greet</button>
       </form>
       <p>{greetMsg()}</p>
+
+      <section class="kobalte-smoke">
+        <h2>Kobalte + Solid 2.0 RC</h2>
+        <p>
+          Bridge package <code>@opencenter-cloud/kobalte-core</code> (unstyled
+          Button).
+        </p>
+        <Button
+          class="kobalte-button"
+          onClick={() => setClicks((n) => n + 1)}
+        >
+          Clicked {clicks()} times
+        </Button>
+      </section>
     </main>
   );
 }

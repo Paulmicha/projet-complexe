@@ -95,6 +95,50 @@ button {
   margin-right: 5px;
 }
 
+.kobalte-smoke {
+  margin: 2.5rem auto 0;
+  padding: 1.25rem 1.5rem;
+  max-width: 28rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.kobalte-smoke h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.kobalte-smoke p {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.kobalte-button {
+  appearance: none;
+  border: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 6px;
+  background-color: hsl(200 98% 39%);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.kobalte-button:hover {
+  background-color: hsl(201 96% 32%);
+}
+
+.kobalte-button:focus-visible {
+  outline: 2px solid hsl(200 98% 39%);
+  outline-offset: 2px;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color: #f6f6f6;
@@ -112,5 +156,18 @@ button {
   }
   button:active {
     background-color: #0f0f0f69;
+  }
+
+  .kobalte-smoke {
+    border-color: #555;
+  }
+
+  .kobalte-button {
+    background-color: hsl(201 96% 32%);
+    color: hsla(0 100% 100% / 0.9);
+  }
+
+  .kobalte-button:hover {
+    background-color: hsl(200 98% 39%);
   }
 }
