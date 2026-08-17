@@ -1,0 +1,26 @@
+.cover {
+  display: flex;
+  flex-direction: column;
+  min-block-size: var(--cover-min-height, 100vh);
+  padding: var(--space, var(--s1));
+}
+
+.cover--no-pad {
+  padding: 0;
+}
+
+.cover > * {
+  margin-block: var(--space, var(--s1));
+}
+
+.cover > :first-child:not(:is(.cover-principal)) {
+  margin-block-start: 0;
+}
+
+.cover > :last-child:not(:is(.cover-principal)) {
+  margin-block-end: 0;
+}
+
+.cover > .cover-principal {
+  margin-block: auto;
+}
