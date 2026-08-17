@@ -1,0 +1,44 @@
+:root {
+  --line-height: utopia.clamp(21, 23);
+  --sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial,
+    "Liberation Sans", "Nimbus Sans", Roboto, sans-serif;
+
+  @utopia typeScale({
+    minWidth: 320,
+    maxWidth: 1240,
+    minFontSize: 19,
+    maxFontSize: 22,
+    minTypeScale: 1.2,
+    maxTypeScale: 1.25,
+    positiveSteps: 5,
+    negativeSteps: 3,
+    prefix: "size",
+  });
+
+  @utopia spaceScale({
+    minWidth: 320,
+    maxWidth: 1240,
+    minSize: 18,
+    maxSize: 22,
+    positiveSteps: [1.5, 2, 3],
+    negativeSteps: [0.75, 0.5],
+  });
+
+  --line-length: 36rem;
+  --max-length: calc(var(--line-length) * 2 + var(--space-m));
+  --scale-max-width: 62rem;
+
+  --color-grey-1: #151515;
+  --color-grey-2: #ddd;
+  --color-grey-3: #292929;
+  --color-grey-4: #1c1c1c;
+  --color-grey-5: #717171;
+
+  --grey-dark: var(--color-grey-1);
+  --inverted-bg-color: white;
+  --inverted-text-color: var(--grey-dark);
+  --accent: var(--color-grey-3);
+
+  /* Every Layout EPUB default: space = var(--s1) */
+  --s1: var(--space-s);
+}
