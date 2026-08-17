@@ -1,0 +1,59 @@
+.workspace {
+  block-size: 100%;
+}
+
+.workspace-stack {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+}
+
+.workspace-stack > :last-child {
+  flex: 1 1 auto;
+  min-block-size: 0;
+}
+
+.tab-item {
+  display: flex;
+  align-items: stretch;
+}
+
+.tab-item[hidden] {
+  display: none;
+}
+
+.tab-item [data-selected] {
+  font-weight: 600;
+}
+
+.panel {
+  padding: var(--space-m);
+  min-block-size: 0;
+  overflow: auto;
+}
+
+.workspace button {
+  appearance: none;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--color-grey-2);
+  padding: var(--space-3xs, 0.25rem) var(--space-s);
+  cursor: pointer;
+}
+
+.workspace button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.workspace [role="tablist"] {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.workspace-stack [role="tabpanel"] {
+  flex: 1 1 auto;
+  min-block-size: 0;
+}

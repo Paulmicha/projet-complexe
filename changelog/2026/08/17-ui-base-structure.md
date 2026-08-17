@@ -1,10 +1,10 @@
-# UI base structure — implementation plan
+# UI base structure
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> Original implementation plan for the first Solid/Kobalte slice. Executed 2026-08-17 on branch `ui-base-structure` (not merged to `main`). Task steps below are the spec as written; see **Outcome** for what actually landed.
 
 - **Date:** 2026-08-17
-- **Updated:** 2026-08-17 — layout CSS/props taken from the Every Layout EPUB, not the public site
-- **Status:** planned (not executed)
+- **Updated:** 2026-08-17 — executed on `ui-base-structure`; layout CSS/props from the Every Layout EPUB
+- **Status:** Implemented (branch `ui-base-structure`, not merged)
 - **Scope:** first Solid/Kobalte slice in `app/`: Every Layout primitives, Chouette-derived tokens, flat in-memory tabs
 - **Repo:** `/home/paul/Documents/projet-complexe/app` (own git work tree; not the home-dir repo)
 - **Related:**
@@ -18,6 +18,35 @@
 **Architecture:** Tabs are session chrome, not routes. A tab is `{ id, title }` in a Solid signal factory. Kobalte provides accessible tab behavior (unstyled). Layout primitives follow the Every Layout EPUB (ch010/013/014/016 generator CSS + Props API), not `@media` breakpoints. Tokens come from Chouette’s Utopia scales via PostCSS, with `--s1` aliased to `--space-s`. `Sidebar` is implemented and tested but **not mounted** in this chrome (reserved for a later inspector column).
 
 **Tech Stack:** Tauri 2, SolidJS 2.0 RC, Vite 8, `@opencenter-cloud/kobalte-core` (already a dependency), PostCSS + `postcss-utopia`, Vitest + jsdom, pnpm.
+
+## Outcome (2026-08-17)
+
+Subagent-driven execution of Tasks 1–4 on `ui-base-structure`. History is **four commits**, one per plan task (review fixes folded into Task 4). `pnpm test` **14/14**; `tsc --noEmit` clean. Greet demo and `src/App.css` are gone; `App.tsx` renders `<Workspace />` only. Messages have no `Co-authored-by` trailer.
+
+**Commits** (`main`..`HEAD`), matching plan Steps:
+
+1. Add Utopia tokens, PostCSS, and Vitest harness.
+2. Add Stack, Cluster, Cover, and Sidebar layout primitives.
+3. Add in-memory tab session with last-tab guard.
+4. Replace greet demo with a Kobalte tab workspace.
+
+**Accepted deviations from the plan body:**
+
+- Layout/workspace tests are `*.test.tsx`, not `*.test.ts`. Vite 8 oxc cannot parse JSX in `.ts`. `vitest.config.ts` `include` is both globs; `css: true` is required or Vitest strips layout CSS.
+- Solid 2 RC: layout components use `class={...}` arrays (not Solid 1 `classList`); tab signals use `ownedWrite: true`; `add()`/`close()` call `flush()` so `createRoot` tests see writes in the same tick.
+- jsdom does not resolve `var()` used values or lay out. Layout tests assert custom properties / CSSOM / `flex-direction: row`, not the plan’s pixel/`offsetLeft` literals.
+- Extra file: `src/shell/workspace.test.tsx` (chrome click-through: add, close, last-tab `disabled`, strip row, hidden closed item `display: none`).
+- Tab strip CSS targets `.workspace-stack` (flex column) and `[role="tablist"]` (flex row). The plan’s `.workspace [data-orientation="horizontal"]` rule also matched Kobalte List/Trigger/Content and stacked tabs vertically.
+- Closed tab triggers stay in the DOM (`strip` grows; `hidden` + Trigger `disabled`). Unmounting a Trigger on close writes Kobalte’s collection from dispose (`REACTIVE_WRITE_IN_OWNED_SCOPE`). `.tab-item[hidden] { display: none }` is required because author `.tab-item { display: flex }` otherwise overrides the user-agent `[hidden]` rule.
+- After `add()`, Workspace clicks `[data-key="${id}"]` so Kobalte selects the new tab (controlled value is flushed before the trigger is in the collection).
+- `--space-3xs` is not emitted by this Utopia `spaceScale`; call sites use `var(--space-3xs, 0.25rem)`.
+- Vite still warns that `postcss-utopia` did not pass `from` to `postcss.parse`. Emitted `clamp()` / `--space-s` output is correct.
+
+**Open:**
+
+- Task 4 Step 5 (`pnpm tauri dev` GUI checklist) was not walked in the webview. Confirm close removes the tab (no ghost), window fill, and arrow-key nav.
+- `strip` never shrinks; long sessions accumulate hidden triggers.
+- `setActiveId` is the raw setter (no `flush()`); `add`/`close` flush.
 
 ## Global Constraints
 
@@ -76,11 +105,12 @@
 - `src/shell/tab-session.ts`
 - `src/shell/workspace.tsx`
 - `src/shell/workspace.css`
-- `src/layouts/stack.test.ts`
-- `src/layouts/cluster.test.ts`
-- `src/layouts/cover.test.ts`
-- `src/layouts/sidebar.test.ts`
+- `src/layouts/stack.test.tsx` (plan said `.test.ts`; see Outcome)
+- `src/layouts/cluster.test.tsx`
+- `src/layouts/cover.test.tsx`
+- `src/layouts/sidebar.test.tsx`
 - `src/shell/tab-session.test.ts`
+- `src/shell/workspace.test.tsx` (not in the original file map)
 
 **Modify:**
 
@@ -113,20 +143,20 @@
 - Consumes: Chouette `:root` Utopia blocks from `/home/paul/Documents/chouette.net.br/src/routes/main.css` (lines 23–69, 75–89, 107–119)
 - Produces: CSS custom properties `--size-*`, `--space-*`, `--line-length`, `--max-length`, `--sans-serif`, `--line-height`, greys, `--inverted-bg-color`, `--inverted-text-color` on `:root`
 
-- [ ] **Step 1: Install tooling**
+- [x] **Step 1: Install tooling**
 
 ```bash
 cd /home/paul/Documents/projet-complexe/app
 pnpm add -D postcss postcss-utopia vitest jsdom
 ```
 
-- [ ] **Step 2: Add `test` script** to `package.json` `"scripts"`:
+- [x] **Step 2: Add `test` script** to `package.json` `"scripts"`:
 
 ```json
 "test": "vitest run"
 ```
 
-- [ ] **Step 3: Write `postcss.config.js`**
+- [x] **Step 3: Write `postcss.config.js`**
 
 ```js
 import utopia from "postcss-utopia";
@@ -136,7 +166,7 @@ export default {
 };
 ```
 
-- [ ] **Step 4: Write `vitest.config.ts`**
+- [x] **Step 4: Write `vitest.config.ts`**
 
 ```ts
 import { defineConfig } from "vitest/config";
@@ -151,7 +181,7 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 5: Write `src/css/base/_reset.css`**
+- [x] **Step 5: Write `src/css/base/_reset.css`**
 
 ```css
 *,
@@ -185,7 +215,7 @@ canvas {
 }
 ```
 
-- [ ] **Step 6: Write `src/css/base/_tokens.css`**
+- [x] **Step 6: Write `src/css/base/_tokens.css`**
 
 Copy Chouette’s Utopia settings and measures **verbatim** (same min/max widths and steps). Include greys and inverted aliases. Do **not** set `--base-bg-color` to `--blue`.
 
@@ -238,7 +268,7 @@ Copy Chouette’s Utopia settings and measures **verbatim** (same min/max widths
 
 If `postcss-utopia` emits `--space-s` / `--space-m` / `--space-l` under different names than Chouette, open Chouette’s compiled CSS or the plugin docs and **alias** `--space-s`, `--space-m`, `--space-l` to whatever the plugin generated. Layouts below assume those three names exist.
 
-- [ ] **Step 7: Write `src/css/base/_root.css`**
+- [x] **Step 7: Write `src/css/base/_root.css`**
 
 ```css
 html {
@@ -250,7 +280,7 @@ html {
 }
 ```
 
-- [ ] **Step 8: Write `src/css/index.css`**
+- [x] **Step 8: Write `src/css/index.css`**
 
 ```css
 @import "./base/_reset.css";
@@ -258,7 +288,7 @@ html {
 @import "./base/_root.css";
 ```
 
-- [ ] **Step 9: Import tokens from the entry**
+- [x] **Step 9: Import tokens from the entry**
 
 In `src/index.tsx`, add as the first import:
 
@@ -268,7 +298,7 @@ import "./css/index.css";
 
 In `index.html`, set `<title>Projet Complexe</title>`.
 
-- [ ] **Step 10: Smoke-check PostCSS**
+- [x] **Step 10: Smoke-check PostCSS**
 
 ```bash
 cd /home/paul/Documents/projet-complexe/app
@@ -277,7 +307,7 @@ pnpm exec vite build
 
 Expected: build succeeds. Generated CSS in `dist/assets/*.css` contains `clamp(` for font-size/spacing (Utopia output). If the `@utopia` at-rules leak unprocessed, the plugin is not hooked — fix `postcss.config.js` before continuing.
 
-- [ ] **Step 11: Commit**
+- [x] **Step 11: Commit**
 
 ```bash
 cd /home/paul/Documents/projet-complexe/app
@@ -341,7 +371,7 @@ export function Sidebar(props: {
 }): JSX.Element;
 ```
 
-- [ ] **Step 1: Write the failing Stack test** `src/layouts/stack.test.ts`
+- [x] **Step 1: Write the failing Stack test** `src/layouts/stack.test.ts`
 
 ```ts
 import { afterEach, expect, test } from "vitest";
@@ -374,14 +404,14 @@ test("stack applies margin-block-start only to the second child", () => {
 });
 ```
 
-- [ ] **Step 2: Run it — expect FAIL** (module not found)
+- [x] **Step 2: Run it — expect FAIL** (module not found)
 
 ```bash
 cd /home/paul/Documents/projet-complexe/app
 pnpm test src/layouts/stack.test.ts
 ```
 
-- [ ] **Step 3: Implement Stack** (EPUB ch010 generator CSS + Props API)
+- [x] **Step 3: Implement Stack** (EPUB ch010 generator CSS + Props API)
 
 `--space` lives on **children** (`--layout-space` on the parent is only the Solid prop bridge). Recursive mode drops the child combinator. `splitAfter` sets `margin-block-end: auto` on that nth-child.
 
@@ -454,13 +484,13 @@ export function Stack(props: {
 }
 ```
 
-- [ ] **Step 4: Run Stack test — expect PASS**
+- [x] **Step 4: Run Stack test — expect PASS**
 
 ```bash
 pnpm test src/layouts/stack.test.ts
 ```
 
-- [ ] **Step 5: Cluster test + implementation** (EPUB ch013)
+- [x] **Step 5: Cluster test + implementation** (EPUB ch013)
 
 Test: `.cluster` is `display: flex`, `flex-wrap: wrap`, and `justify-content` / `align-items` default to `flex-start` (Props API, not the generator sample that uses `center`).
 
@@ -478,7 +508,7 @@ Test: `.cluster` is `display: flex`, `flex-wrap: wrap`, and `justify-content` / 
 
 Set `--space`, `--justify`, `--align` from props. Default space `var(--s1)`.
 
-- [ ] **Step 6: Cover test + implementation** (EPUB ch016)
+- [x] **Step 6: Cover test + implementation** (EPUB ch016)
 
 Test: `min-block-size` matches `minHeight` (e.g. `200px`). Test: an `<h1>` child has `margin-block: auto` (default `centered="h1"`). Test: `noPad` removes padding.
 
@@ -517,7 +547,7 @@ In the Solid component, mark the direct child that matches `props.centered` (def
 
 Workspace (Task 4) passes `minHeight="100%"` `noPad` `space="0px"` and has **no** `h1`, so the single Stack is first and last `:not(.cover-principal)` → outer margins 0, filling the window from the top (not a hero).
 
-- [ ] **Step 7: Sidebar test + implementation** (EPUB ch014)
+- [x] **Step 7: Sidebar test + implementation** (EPUB ch014)
 
 Test: two children, last child `flex-grow` is `999` when `side` is `left`. Test: `noStretch` sets `align-items: flex-start`. Test: omitted `sideWidth` leaves sidebar `flex-basis: auto`.
 
@@ -549,7 +579,7 @@ Generator CSS (assumes sidebar is `:first-child`). Component `side="right"` swap
 
 In TSX: two children; if `side === "right"`, first is `.not-sidebar` and second is `.sidebar`; otherwise first `.sidebar`, last `.not-sidebar`. Only set `--side-width` when `sideWidth` is passed. `--content-min` default `50%`. `--gutter` from `space` default `var(--s1)`.
 
-- [ ] **Step 8: Run all layout tests**
+- [x] **Step 8: Run all layout tests**
 
 ```bash
 pnpm test src/layouts
@@ -557,7 +587,7 @@ pnpm test src/layouts
 
 Expected: PASS.
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add src/layouts
@@ -603,7 +633,7 @@ Rules:
 - If the closed tab was active, activate the neighbour to the left, or the new first tab if the first was closed.
 - Ids are strings (Kobalte `value` is a string).
 
-- [ ] **Step 1: Write `src/shell/tab-session.test.ts`** (failing)
+- [x] **Step 1: Write `src/shell/tab-session.test.ts`** (failing)
 
 ```ts
 import { expect, test } from "vitest";
@@ -653,13 +683,13 @@ test("close of the active tab activates the left neighbour", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests — expect FAIL**
+- [x] **Step 2: Run tests — expect FAIL**
 
 ```bash
 pnpm test src/shell/tab-session.test.ts
 ```
 
-- [ ] **Step 3: Implement `src/shell/tab-session.ts`**
+- [x] **Step 3: Implement `src/shell/tab-session.ts`**
 
 ```ts
 import { createSignal } from "solid-js";
@@ -704,13 +734,13 @@ export function createTabSession(): TabSession {
 }
 ```
 
-- [ ] **Step 4: Run tests — expect PASS**
+- [x] **Step 4: Run tests — expect PASS**
 
 ```bash
 pnpm test src/shell/tab-session.test.ts
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/shell/tab-session.ts src/shell/tab-session.test.ts
@@ -776,7 +806,7 @@ Dummy panel markup:
 
 `.panel` padding: `var(--space-m)`. No new layout primitive.
 
-- [ ] **Step 1: Write `src/shell/workspace.css`**
+- [x] **Step 1: Write `src/shell/workspace.css`**
 
 ```css
 .workspace-stack {
@@ -825,7 +855,7 @@ Style Kobalte triggers/buttons with existing tokens only (no leftover Vite purpl
 
 If `--space-3xs` does not exist after Utopia, use `0.25rem`.
 
-- [ ] **Step 2: Write `src/shell/workspace.tsx`**
+- [x] **Step 2: Write `src/shell/workspace.tsx`**
 
 ```tsx
 import { For } from "solid-js";
@@ -907,7 +937,7 @@ If Root is not a flex column by default, add:
 
 Kobalte sets `data-orientation` on Root (see `TabsRootRenderProps`).
 
-- [ ] **Step 3: Replace `src/App.tsx`**
+- [x] **Step 3: Replace `src/App.tsx`**
 
 ```tsx
 import { Workspace } from "./shell/workspace";
@@ -919,7 +949,7 @@ export default function App() {
 
 Remove `import "./App.css"` and delete `src/App.css`. Remove the Kobalte Button smoke-test section (tabs now prove Kobalte). Remove `invoke` / greet.
 
-- [ ] **Step 4: Typecheck and unit tests**
+- [x] **Step 4: Typecheck and unit tests**
 
 ```bash
 cd /home/paul/Documents/projet-complexe/app
@@ -929,7 +959,7 @@ pnpm test
 
 Expected: PASS, no unused imports (`noUnusedLocals` is on).
 
-- [ ] **Step 5: Manual check**
+- [ ] **Step 5: Manual check** (still open — not walked in the webview)
 
 ```bash
 pnpm tauri dev
@@ -944,7 +974,7 @@ Expected:
 5. `×` on the last remaining tab does nothing (control disabled).
 6. Arrow keys move between tab triggers (Kobalte).
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/App.tsx src/shell src/index.tsx
@@ -993,11 +1023,4 @@ None of TBD / “handle edge cases” / “write tests later”. If Utopia name 
 
 ---
 
-Plan complete and saved to `app/changelog/2026/08/17-ui-base-structure.md`.
-
-Two execution options:
-
-1. **Subagent-driven** (recommended) — a fresh subagent per task, review between tasks
-2. **Inline** — execute tasks in this session with checkpoints
-
-Which approach?
+Plan saved 2026-08-17; executed the same day on `ui-base-structure` (subagent-driven). See **Outcome** at the top.
