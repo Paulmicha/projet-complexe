@@ -1,0 +1,21 @@
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter, var(--s1));
+  align-items: stretch;
+}
+
+.with-sidebar--no-stretch {
+  align-items: flex-start;
+}
+
+.with-sidebar > .sidebar {
+  flex-basis: var(--side-width, auto);
+  flex-grow: 1;
+}
+
+.with-sidebar > .not-sidebar {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: var(--content-min, 50%);
+}

@@ -1,0 +1,28 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack > * {
+  --space: var(--layout-space, var(--s1));
+  margin-block: 0;
+}
+
+.stack > * + * {
+  margin-block-start: var(--space, 1.5rem);
+}
+
+.stack--recursive * + * {
+  margin-block-start: var(--space, 1.5rem);
+}
+
+.stack:only-child {
+  block-size: 100%;
+}
+
+.stack--split-1 > :nth-child(1),
+.stack--split-2 > :nth-child(2),
+.stack--split-3 > :nth-child(3) {
+  margin-block-end: auto;
+}
