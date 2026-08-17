@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-block-size: 100%;
+  block-size: 100%;
+}
+
+html {
+  block-size: 100%;
+}
+
+body {
+  min-block-size: 100dvh;
+}
+
+img,
+svg,
+video,
+canvas {
+  vertical-align: middle;
+}
