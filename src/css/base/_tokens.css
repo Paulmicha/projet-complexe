@@ -42,3 +42,14 @@
   /* Every Layout EPUB default: space = var(--s1) */
   --s1: var(--space-s);
 }
+
+:root,
+[data-theme="light"] {
+  --surface-bg: var(--inverted-bg-color);
+  --surface-text: var(--inverted-text-color);
+}
+
+[data-theme="dark"] {
+  --surface-bg: var(--grey-dark);
+  --surface-text: white;
+}

@@ -5,10 +5,12 @@ import { Cover } from "../layouts/cover";
 import { Stack } from "../layouts/stack";
 import { Cluster } from "../layouts/cluster";
 import { createTabSession } from "./tab-session";
+import { createThemePref } from "./theme-pref";
 import "./workspace.css";
 
 export function Workspace() {
   const session = createTabSession();
+  const prefs = createThemePref();
   // Closed Triggers stay mounted: unmounting them on close writes Kobalte's
   // collection from dispose (REACTIVE_WRITE_IN_OWNED_SCOPE). add() also
   // flush()es before the new trigger is registered, so the strip only grows.
@@ -66,12 +68,19 @@ export function Workspace() {
               >
                 +
               </Button>
+              <Button
+                aria-label="Toggle theme"
+                onClick={() => prefs.toggle()}
+              >
+                {prefs.theme() === "light" ? "Dark" : "Light"}
+              </Button>
             </Cluster>
             <For each={session.tabs()}>
               {(tab) => (
                 <Tabs.Content value={tab.id}>
                   <div class="panel">
                     <p>{tab.title}</p>
+                    <p class="panel-note">{tab.state.note}</p>
                   </div>
                 </Tabs.Content>
               )}

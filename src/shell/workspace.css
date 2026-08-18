@@ -32,6 +32,10 @@
   overflow: auto;
 }
 
+.panel-note {
+  opacity: 0.75;
+}
+
 .workspace button {
   appearance: none;
   font: inherit;

@@ -1,2 +1,49 @@
-node_modules
-dist
+# Dependencies
+node_modules/
+
+# Frontend build
+dist/
+dist-ssr/
+.vite/
+
+# TypeScript incremental / composite emit
+# (tsc -b on tsconfig.node.json writes these next to vite.config.ts)
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# Test / coverage
+coverage/
+*.lcov
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env / secrets (keep examples if added later)
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+*.swp
+*.swo
+*~
+.idea/
+*.local
+
+# Agent / SDD scratch (plan ledgers, briefs, review packages)
+.superpowers/
+
+# Optional local tooling dumps
+*.pem
+*.key

@@ -1,6 +1,11 @@
+html,
+body,
+#root {
+  background-color: var(--surface-bg);
+  color: var(--surface-text);
+}
+
 html {
-  background-color: var(--inverted-bg-color);
-  color: var(--inverted-text-color);
   font-family: var(--sans-serif);
   font-size: var(--size-0);
   line-height: var(--line-height);
